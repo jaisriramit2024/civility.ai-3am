@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Civility AI — Real-time AI-powered content moderation. Detects abusive text, morphed images, deepfakes, and audio profanity before publishing." />
+  <title>Civility AI — Content Moderation Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="showView('home')" id="logo-btn">
+        <div class="logo-shield">
+          <svg viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L4 9V22C4 32.5 11.5 42 20 45C28.5 42 36 32.5 36 22V9L20 2Z" fill="url(#shg)" opacity="0.9" />
+            <path d="M13 22L18 27L28 17" stroke="white" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <defs>
+              <linearGradient id="shg" x1="4" y1="2" x2="36" y2="45" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#8b5cf6" />
+                <stop offset="1" stop-color="#6d28d9" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text-group">
+          <span class="logo-name">Civility<span class="logo-dot">.AI</span></span>
+          <span class="logo-tagline">Moderation API</span>
+        </div>
+      </div>
+
+      <div class="nav-center" id="navCenter">
+        <button class="nav-tab active" id="ntHome" onclick="showView('home')">🏠 Home</button>
+        <button class="nav-tab" id="ntText" onclick="showView('text')">📝 Text</button>
+        <button class="nav-tab" id="ntImage" onclick="showView('image')">🖼️ Image</button>
+        <button class="nav-tab" id="ntVideo" onclick="showView('video')">🎥 Video</button>
+      </div>
+
+      <div class="nav-right">
+        <button class="courtroom-btn" id="courtroomNavBtn" onclick="showView('courtroom')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 22H21M4 22V11L12 2L20 11V22M9 22V16H15V22" />
+          </svg>
+          Courtroom
+        </button>
+        <div class="nav-status">
+          <span class="status-dot"></span>
+          <span>API Live</span>
+        </div>
+      </div>
+
+      <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════ HOME VIEW ══════════ -->
+  <div class="view active" id="view-home">
+    <section class="home-hero">
+      <div class="hero-bg-shapes">
+        <div class="shape s1"></div>
+        <div class="shape s2"></div>
+        <div class="shape s3"></div>
+      </div>
+      <div class="home-hero-content">
+        <div class="hero-pill">⚡ Real-time Moderation Engine · Safety API Layer</div>
+        <h1>The AI Shield<br /><span class="hero-grad">Behind Every Post</span></h1>
+        <p>Civility.AI intercepts and analyzes content before it's published — silently working behind Instagram,
+          WhatsApp, and any social platform to keep communities safe.</p>
+      </div>
+    </section>
+
+    <!-- 3 Main Action Buttons -->
+    <section class="action-section">
+      <div class="action-grid">
+        <div class="action-card" onclick="showView('text')" id="ac-text">
+          <div class="ac-icon-wrap text-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+          </div>
+          <h3>Text Analysis</h3>
+          <p>Detect abusive language, bypass attempts, sarcasm, and threatening content. Get AI-powered civil rewrites
+            instantly.</p>
+          <div class="ac-tags">
+            <span class="tag-red">Abuse</span>
+            <span class="tag-yellow">Bypass</span>
+            <span class="tag-green">Rewrite</span>
+          </div>
+          <button class="ac-btn">Try Text Analysis →</button>
+        </div>
+
+        <div class="action-card" onclick="showView('image')" id="ac-image">
+          <div class="ac-icon-wrap image-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg>
+          </div>
+          <h3>Image Analysis</h3>
+          <p>Detect morphed photos, AI-generated images, deepfakes, and copied originals. Compare against the platform
+            database.</p>
+          <div class="ac-tags">
+            <span class="tag-yellow">Morphed</span>
+            <span class="tag-yellow">AI-Gen</span>
+            <span class="tag-yellow">Deepfake</span>
+          </div>
+          <button class="ac-btn">Try Image Analysis →</button>
+        </div>
+
+        <div class="action-card" onclick="showView('video')" id="ac-video">
+          <div class="ac-icon-wrap video-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="23 7 16 12 23 17 23 7" />
+              <rect x="1" y="5" width="15" height="14" rx="2" />
+            </svg>
+          </div>
+          <h3>Video Analysis</h3>
+          <p>Full video analysis — frame-by-frame deepfake check, audio profanity scan, nudity detection, and awareness
+            routing.</p>
+          <div class="ac-tags">
+            <span class="tag-yellow">Deepfake</span>
+            <span class="tag-red">Audio</span>
+            <span class="tag-green">Reels</span>
+          </div>
+          <button class="ac-btn">Try Video Analysis →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="dash-row">
+      <div class="dash-box">
+        <div class="dash-box-header">
+          <div class="dbh-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            High Risk Users
+          </div>
+          <span class="dbh-badge red-badge" id="riskCount">0 flagged</span>
+        </div>
+        <div class="risk-user-list" id="riskUserList">
+          <div class="empty-state">No high-risk users yet</div>
+        </div>
+      </div>
+
+      <div class="dash-box">
+        <div class="dash-box-header">
+          <div class="dbh-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+            </svg>
+            Violation Types
+          </div>
+        </div>
+        <div class="violation-legend">
+          <div class="vl-item">
+            <div class="vl-color red-dot"></div>
+            <div class="vl-info"><span class="vl-name">Abusive / Offensive Text</span><span class="vl-desc">Profanity,
+                threats, bypass attempts</span></div><span class="vl-count" id="vl-abuse">0</span>
+          </div>
+          <div class="vl-item">
+            <div class="vl-color yellow-dot"></div>
+            <div class="vl-info"><span class="vl-name">Morphed / AI-Generated Image</span><span class="vl-desc">Face
+                edits, Stable Diffusion, deepfakes</span></div><span class="vl-count" id="vl-morph">0</span>
+          </div>
+          <div class="vl-item">
+            <div class="vl-color yellow-dot"></div>
+            <div class="vl-info"><span class="vl-name">Deepfake Video / Audio</span><span class="vl-desc">Synthetic
+                face-swap, voice clones</span></div><span class="vl-count" id="vl-deep">0</span>
+          </div>
+          <div class="vl-item">
+            <div class="vl-color red-dot"></div>
+            <div class="vl-info"><span class="vl-name">Audio Profanity</span><span class="vl-desc">Detected in video
+                audio track</span></div><span class="vl-count" id="vl-audio">0</span>
+          </div>
+          <div class="vl-item">
+            <div class="vl-color green-dot"></div>
+            <div class="vl-info"><span class="vl-name">Approved Content</span><span class="vl-desc">Safe and ready to
+                publish</span></div><span class="vl-count" id="vl-safe">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-box">
+        <div class="dash-box-header">
+          <div class="dbh-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            Recent Activity
+          </div>
+        </div>
+        <div class="activity-list" id="activityList">
+          <div class="empty-state">No activity yet — start analyzing content</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════ TEXT VIEW ══════════ -->
+  <div class="view" id="view-text">
+    <div class="view-header">
+      <button class="back-btn" onclick="showView('home')">← Back</button>
+      <h2>📝 Text Content Analyzer</h2>
+      <p>Enter a caption or message to analyze for violations before posting</p>
+    </div>
+    <div class="analyzer-layout">
+      <!-- LEFT INPUT -->
+      <div class="analyzer-left">
+        <div class="input-card">
+          <div class="input-card-header">
+            <span class="ich-title">💬 Caption / Message</span>
+            <span class="char-count" id="txtCharCount">0 / 500</span>
+          </div>
+          <textarea id="textInput"
+            placeholder="Type or paste your caption here...&#10;&#10;Examples to try:&#10;• 'f**k you! Nobody cares about your work!'&#10;• 'I will kill the game tonight! 🔥'&#10;• 'I will kill you if you post that.'&#10;• 'Women deserve safe streets. Share this.'"
+            oninput="updateTxtCount()"></textarea>
+          <div class="quick-chips">
+            <span class="qc-label">Quick test:</span>
+            <button class="chip" onclick="loadTxt('abuse')">Abusive</button>
+            <button class="chip" onclick="loadTxt('sarcasm')">Sarcasm (fun)</button>
+            <button class="chip" onclick="loadTxt('threat')">Threat</button>
+            <button class="chip" onclick="loadTxt('awareness')">Awareness</button>
+            <button class="chip" onclick="loadTxt('safe')">Safe</button>
+          </div>
+          <div class="username-row">
+            <label class="un-label">👤 Username</label>
+            <input type="text" id="txtUsername" value="@demo_user" class="un-input" placeholder="@username" />
+          </div>
+          <button class="analyze-btn-main" onclick="runTextAnalysis()" id="txtAnalyzeBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            Analyze Text
+          </button>
+        </div>
+      </div>
+      <!-- RIGHT RESULTS -->
+      <div class="analyzer-right">
+        <div class="results-placeholder" id="txtPlaceholder">
+          <div class="rp-icon">📝</div>
+          <p>Enter text and click Analyze to see results</p>
+        </div>
+        <div class="results-grid hidden" id="txtResults">
+          <div class="result-block" id="txtBlock1">
+            <div class="rb-header">Moderation Status</div>
+            <div class="status-seal" id="txtSeal">
+              <div class="seal-icon" id="txtSealIcon">⏳</div>
+              <div class="seal-label" id="txtSealLabel">Analyzing...</div>
+              <div class="seal-severity" id="txtSealSev"></div>
+              <div class="seal-conf" id="txtSealConf"></div>
+            </div>
+            <div class="violation-badges" id="txtBadges"></div>
+          </div>
+          <div class="result-block" id="txtBlock2">
+            <div class="rb-header">🔍 Analysis Report</div>
+            <div class="analysis-report" id="txtReport"></div>
+          </div>
+          <div class="result-block" id="txtBlock3">
+            <div class="rb-header">✍️ AI Civil Rewrite</div>
+            <div class="rewrite-box" id="txtRewrite">
+              <div class="rw-empty">No rewrite needed — content is clean.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ IMAGE ANALYSER VIEW ══════════ -->
+  <div class="view" id="view-image">
+    <!-- Dark themed background for image analyser -->
+    <div class="ia-wrapper">
+      <div class="ia-bg">
+        <div class="ia-orb ia-orb-1"></div>
+        <div class="ia-orb ia-orb-2"></div>
+      </div>
+
+      <div class="ia-container">
+        <!-- Header -->
+        <header class="ia-header">
+          <button class="ia-back-btn" onclick="showView('home')">← Back to Platform</button>
+          <div class="ia-badge">
+            <span class="ia-pulse-dot"></span>
+            AI-Powered Detection Engine
+          </div>
+          <h1 class="ia-title">Image Analyzer</h1>
+          <p class="ia-subtitle">
+            Advanced multi-layer detection pipeline that identifies AI-generated,
+            manipulated, and authentic images using frequency analysis, ELA,
+            metadata inspection, and perceptual hashing.
+          </p>
+        </header>
+
+        <!-- Upload Zone -->
+        <div class="ia-upload-zone" id="iaUploadZone" onclick="document.getElementById('iaFileInput').click()"
+          ondragover="event.preventDefault();this.classList.add('ia-drag-active')"
+          ondragleave="this.classList.remove('ia-drag-active')" ondrop="iaHandleDrop(event)">
+
+          <div class="ia-upload-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+          </div>
+          <div class="ia-upload-text">
+            <h3 id="iaUploadTitle">Drag & drop an image to analyze</h3>
+            <p id="iaUploadSubtitle">or <span class="ia-browse-link">browse files</span> from your device</p>
+          </div>
+          <div class="ia-format-badges">
+            <span class="ia-fmt">JPG</span>
+            <span class="ia-fmt">PNG</span>
+            <span class="ia-fmt">WebP</span>
+            <span class="ia-fmt">BMP</span>
+            <span class="ia-fmt">TIFF</span>
+            <span class="ia-fmt">GIF</span>
+          </div>
+          <input type="file" id="iaFileInput" accept="image/*" style="display:none" onchange="iaHandleFile(event)" />
+        </div>
+
+        <!-- Preview Section -->
+        <div class="ia-preview hidden" id="iaPreview">
+          <div class="ia-preview-card">
+            <button class="ia-remove-btn" onclick="iaClearImage()" title="Remove image" id="iaRemoveBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            <img id="iaPreviewImg" src="" alt="Preview" />
+            <div class="ia-file-info">
+              <span class="ia-fname" id="iaFileName"></span>
+              <span class="ia-fsize" id="iaFileSize"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analyze Button -->
+        <div class="ia-analyze-wrap hidden" id="iaAnalyzeWrap">
+          <button class="ia-analyze-btn" id="iaAnalyzeBtn" onclick="iaRunAnalysis()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span id="iaAnalyzeBtnText">Analyze Image</span>
+          </button>
+        </div>
+
+        <!-- Error Banner -->
+        <div class="ia-error hidden" id="iaError">
+          <span class="ia-error-icon">⚠️</span>
+          <span class="ia-error-text" id="iaErrorText"></span>
+        </div>
+
+        <!-- Results Container -->
+        <div class="ia-results hidden" id="iaResults">
+
+          <!-- Verdict Card -->
+          <div class="ia-verdict" id="iaVerdict">
+            <div class="ia-verdict-icon" id="iaVerdictIcon">✅</div>
+            <div class="ia-verdict-label" id="iaVerdictLabel">Real</div>
+            <div class="ia-verdict-conf" id="iaVerdictConf">Confidence: <span class="ia-conf-val"
+                id="iaConfVal">0%</span></div>
+            <div class="ia-risk-badge" id="iaRiskBadge"><span>●</span> <span id="iaRiskText">Low Risk</span></div>
+            <div class="ia-analysis-time" id="iaAnalysisTime"></div>
+          </div>
+
+          <!-- Score Grid -->
+          <div class="ia-score-grid" id="iaScoreGrid"></div>
+
+          <!-- Detail Panels -->
+          <div id="iaDetailPanels"></div>
+
+          <!-- ELA Heatmap -->
+          <div class="ia-heatmap hidden" id="iaHeatmap">
+            <h3>🗺️ Error Level Analysis Heatmap</h3>
+            <p>Bright regions indicate areas with different compression levels—potential signs of editing or
+              compositing.</p>
+            <img class="ia-heatmap-img" id="iaHeatmapImg" src="" alt="ELA Heatmap" />
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="ia-footer">
+          <p>AI Image Analyzer v1.0 · Multi-layer detection pipeline · Frequency Analysis · ELA · Metadata · Hash
+            Matching</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ VIDEO VIEW ══════════ -->
+  <div class="view" id="view-video">
+    <div class="view-header">
+      <button class="back-btn" onclick="showView('home')">← Back</button>
+      <h2>🎥 Video Analyzer</h2>
+      <p>Upload a video for full analysis — deepfake, audio profanity, nudity detection, and awareness routing</p>
+    </div>
+    <div class="analyzer-layout">
+      <div class="analyzer-left">
+        <div class="input-card">
+          <div class="input-card-header"><span class="ich-title">📤 Upload Video</span></div>
+          <div class="scenario-selector">
+            <div class="sc-label">🔬 Test Scenario</div>
+            <div class="scenario-btns">
+              <button class="scenario-btn active" id="sc-civility_hate" onclick="setScenario('civility_hate',this)">🗣️
+                Hate Speech</button>
+              <button class="scenario-btn" id="sc-abuse_violence" onclick="setScenario('abuse_violence',this)">⚔️
+                Violence</button>
+              <button class="scenario-btn" id="sc-nudity_sexual" onclick="setScenario('nudity_sexual',this)">🔞
+                Nudity</button>
+              <button class="scenario-btn" id="sc-deepfake_clone" onclick="setScenario('deepfake_clone',this)">🤖
+                Deepfake</button>
+              <button class="scenario-btn" id="sc-safe_clean" onclick="setScenario('safe_clean',this)">✅ Safe</button>
+            </div>
+          </div>
+          <div class="upload-zone" id="vidUploadZone" onclick="document.getElementById('vidFile').click()"
+            ondragover="event.preventDefault();this.classList.add('drag-over')"
+            ondragleave="this.classList.remove('drag-over')" ondrop="handleVidDrop(event)">
+            <div class="uz-icon">🎥</div>
+            <h3>Drop video here or click to browse</h3>
+            <p>MP4, MOV, AVI, WEBM — Max 100MB</p>
+            <input type="file" id="vidFile" accept="video/*" style="display:none" onchange="handleVidFile(event)" />
+          </div>
+          <div class="video-preview hidden" id="vidPreview">
+            <video id="vidPreviewPlayer" controls></video>
+            <div class="preview-info" id="vidPreviewInfo"></div>
+          </div>
+          <button class="analyze-btn-main hidden" id="vidAnalyzeBtn" onclick="runVideoAnalysis()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            Analyze Video + Audio
+          </button>
+        </div>
+      </div>
+      <div class="analyzer-right">
+        <div class="results-placeholder" id="vidPlaceholder">
+          <div class="rp-icon">🎥</div>
+          <p>Upload a video and click Analyze to see results</p>
+        </div>
+        <div class="results-grid-3 hidden" id="vidResults">
+          <div class="result-block" id="vidBlock1">
+            <div class="rb-header">Moderation Status</div>
+            <div class="status-seal" id="vidSeal">
+              <div class="seal-icon" id="vidSealIcon">⏳</div>
+              <div class="seal-label" id="vidSealLabel">Analyzing...</div>
+              <div class="seal-severity" id="vidSealSev"></div>
+              <div class="seal-conf" id="vidSealConf"></div>
+            </div>
+            <div class="violation-badges" id="vidBadges"></div>
+          </div>
+          <div class="result-block" id="vidBlock2">
+            <div class="rb-header">📹 Visual Analysis</div>
+            <div class="analysis-report" id="vidReport"></div>
+          </div>
+          <div class="result-block" id="vidBlock3">
+            <div class="rb-header">🎵 Audio Analysis</div>
+            <div class="analysis-report" id="audioReport"></div>
+          </div>
+        </div>
+        <div class="escalation-banner hidden" id="escalationBanner">
+          <div class="esc-icon">🚨</div>
+          <div class="esc-content">
+            <div class="esc-title">Law Enforcement Escalated</div>
+            <div class="esc-msg" id="escalationMsg"></div>
+          </div>
+        </div>
+        <!-- Approve → Reels Button -->
+        <button class="go-reels-btn hidden" id="goReelsBtn" onclick="goToReels()">
+          🎬 View in Reels →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ REELS VIEW ══════════ -->
+  <div class="view" id="view-reels">
+    <div class="reels-container">
+      <div class="reels-player-wrap">
+        <div class="reels-player-card">
+          <video id="reelsVideo" loop playsinline autoplay></video>
+          <div class="reels-overlay">
+            <div class="reels-info">
+              <div class="reels-user">
+                <div class="reels-avatar" id="reelsAvatarText">DU</div>
+                <div>
+                  <div class="reels-username" id="reelsUsernameDisplay">@demo_user</div>
+                  <div class="reels-caption" id="reelsCaption">Approved content • Safe to view</div>
+                </div>
+              </div>
+              <div class="reels-approved-badge">✅ Approved by Civility.AI</div>
+            </div>
+            <div class="reels-actions-side">
+              <button class="reel-action-btn" id="likeBtn" onclick="toggleReelLike(this)">
+                <span>🤍</span><span class="ra-count" id="likeCount">1.2k</span>
+              </button>
+              <button class="reel-action-btn" onclick="openComments()">
+                <span>💬</span><span class="ra-count" id="commCount">0</span>
+              </button>
+              <button class="reel-action-btn" onclick="shareReel()">
+                <span>↗️</span><span class="ra-count">Share</span>
+              </button>
+              <button class="reel-action-btn" onclick="saveReel()">
+                <span id="saveIcon">🔖</span><span class="ra-count">Save</span>
+              </button>
+            </div>
+          </div>
+          <div class="reels-disclaimer hidden" id="reelsDisclaimer"></div>
+        </div>
+        <button class="back-reels-btn" onclick="showView('home')">← Back to Home</button>
+      </div>
+      <div class="reels-comments-panel" id="commentsPanel">
+        <div class="rcp-header">
+          <span>💬 Comments (<span id="commCountBig">0</span>)</span>
+          <div style="display:flex;gap:8px;align-items:center">
+            <span class="rcp-moderated">🛡️ AI Moderated</span>
+            <button class="rcp-close" onclick="openComments()">✕</button>
+          </div>
+        </div>
+        <div class="comments-list" id="commentsList"></div>
+        <div class="comment-input-wrap">
+          <div class="comment-user-chip">
+            <div class="cuc-avatar" id="commentAvatarChip">DU</div>
+            <span id="commentUserChip">@demo_user</span>
+          </div>
+          <input type="text" id="commentInput" class="comment-input"
+            placeholder="Add a comment... (auto-moderated by Civility.AI)"
+            onkeydown="if(event.key==='Enter')postComment()" oninput="previewCommentAnalysis(this.value)" />
+          <button class="comment-send-btn" onclick="postComment()">Post</button>
+        </div>
+        <div class="comment-analysis-hint" id="commentAnalysisHint"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ COURTROOM VIEW ══════════ -->
+  <div class="view" id="view-courtroom">
+    <div class="courtroom-wrap">
+      <div class="courtroom-header">
+        <div class="court-icon">⚖️</div>
+        <h2>Courtroom</h2>
+        <p>A complete record of every moderation decision — what was flagged, why it was blocked, and who is
+          responsible.</p>
+      </div>
+      <div class="court-stats-row" id="courtStats">
+        <div class="court-stat">
+          <div class="cs-num" id="cs-total">0</div>
+          <div class="cs-label">Total Cases</div>
+        </div>
+        <div class="court-stat">
+          <div class="cs-num red-num" id="cs-blocked">0</div>
+          <div class="cs-label">Blocked</div>
+        </div>
+        <div class="court-stat">
+          <div class="cs-num yellow-num" id="cs-flagged">0</div>
+          <div class="cs-label">Flagged</div>
+        </div>
+        <div class="court-stat">
+          <div class="cs-num green-num" id="cs-approved">0</div>
+          <div class="cs-label">Approved</div>
+        </div>
+      </div>
+      <div class="court-filter-row">
+        <button class="court-filter active" onclick="filterCourt('all',this)">All Cases</button>
+        <button class="court-filter" onclick="filterCourt('BLOCKED',this)">🔴 Blocked</button>
+        <button class="court-filter" onclick="filterCourt('FLAGGED',this)">🟡 Flagged</button>
+        <button class="court-filter" onclick="filterCourt('APPROVED',this)">🟢 Approved</button>
+      </div>
+      <div class="court-cases" id="courtCases">
+        <div class="empty-court">
+          <div class="ec-icon">⚖️</div>
+          <p>No cases yet. Start analyzing content to see the courtroom record.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ LOADING OVERLAY ══════════ -->
+  <div class="loading-overlay hidden" id="loadingOverlay">
+    <div class="loading-card">
+      <div class="load-brain">🧠</div>
+      <div class="load-title" id="loadTitle">Analyzing content...</div>
+      <div class="load-steps" id="loadSteps"></div>
+      <div class="load-bar-wrap">
+        <div class="load-bar">
+          <div class="load-progress" id="loadProgress"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TOAST ══════════ -->
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
